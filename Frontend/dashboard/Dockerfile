@@ -1,10 +1,14 @@
-FROM node
+FROM node:18-alpine
 
-COPY . /src
 WORKDIR /src
 
-RUN npm install
-RUN npm install axios
-RUN npm install --save-dev @babel/plugin-proposal-private-property-in-object --legacy-peer-deps
 
-CMD ["npm", "run", "start"]
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+RUN npm run build
+
+CMD ["sh", "-c", "echo Build complete. Files available in /app/dist"]
