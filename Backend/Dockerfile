@@ -5,4 +5,4 @@ WORKDIR /src
 
 RUN pip install fastapi uvicorn[standard] --no-cache-dir
 
-# CMD ["uvicorn", 'main:app', '--host', '0.0.0.0', '--reload', '--port', '8888']
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--reload", "--port", "8888"]

@@ -4,35 +4,46 @@ services :
 
   frontend:
     build:
-      context: ./frontend/dashboard/.
+      context: ./Frontend/dashboard/.
       dockerfile: Dockerfile
-    container_name: react_frontend
+    container_name: react_build
     tty: true
-    ports:
-      - 3000:3000
     volumes:
-      - ./frontend/dashboard:/src
-      - ./frontend/dashboard/assets:/assets
+      - ./Frontend/dashboard/dist:/src/dist
     depends_on:
       - backend
     networks:
       - dash_net
-    command: npm run start
 
   backend:
     build:
-      context: ./backend/.
+      context: ./Backend/.
       dockerfile: Dockerfile
     container_name: fastapi_backend
+    restart: always
     tty: true
     ports:
       - 8888:8888
-    volumes:
-      - ./backend:/src
-      - ./backend/assets:/assets
     networks:
       - dash_net
-    command: uvicorn main:app --host 0.0.0.0 --reload --port 8888
+
+  nginx:
+    build:
+      context: ./Nginx/.
+      dockerfile: Dockerfile
+    container_name: dashboard_nginx
+    restart: always
+    tty: true
+    networks:
+      - dash_net
+    ports:
+      - "80:80"
+    volumes:
+      - ./Frontend/dashboard/dist:/usr/share/nginx/html
+    depends_on:
+      - backend
+      - frontend
+
 
 networks:
   dash_net:
