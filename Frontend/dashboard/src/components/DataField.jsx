@@ -12,63 +12,63 @@ const DataField = () => {
   const totalco2 = useSelector((state) => state.datafield.totalco2, shallowEqual)
 
   return (
-    <div className='flex flex-col items-center justify-center h-full m-7 gap-5'>
+    <div className='flex flex-col items-center justify-center h-full gap-5 m-7'>
       <Card>
-        <div className='flex h-full justify-between'>
+        <div className='flex justify-between h-full'>
           <div className='flex items-center ml-8 font-bold'>
             <span>현재출력</span>
           </div>
           <div className='flex items-center'>
-            <div className='mr-3 w-full font-bold text-4xl'>
+            <div className='w-full mr-3 text-4xl font-bold'>
               {outp}
             </div>
-            <div className='mt-4 font-bold mr-8 w-8'>
+            <div className='w-8 mt-4 mr-8 font-bold'>
               <span>kW</span>
             </div>
           </div>
         </div>
       </Card>
       <Card>
-        <div className='flex h-full justify-between'>
+        <div className='flex justify-between h-full'>
           <div className='flex items-center ml-8 font-bold'>
             <span>금일발전량</span>
           </div>
           <div className='flex items-center'>
-            <div className='mr-3 w-full font-bold text-4xl'>
+            <div className='w-full mr-3 text-4xl font-bold'>
               {/* {todaycpg} */}
               <NumberWithComma value={todaycpg} />
             </div>
-            <div className='mt-4 font-bold mr-8 w-8'>
+            <div className='w-8 mt-4 mr-8 font-bold'>
               <span>kWh</span>
             </div>
           </div>
         </div>
       </Card>
       <Card>
-        <div className='flex h-full justify-between'>
+        <div className='flex justify-between h-full'>
           <div className='flex items-center ml-8 font-bold'>
             <span>누적발전량</span>
           </div>
           <div className='flex items-center'>
-            <div className='mr-3 w-full font-bold text-4xl'>
+            <div className='w-full mr-3 text-4xl font-bold'>
               {accmcpg}
             </div>
-            <div className='mt-4 font-bold mr-8 w-8'>
+            <div className='w-8 mt-4 mr-8 font-bold'>
               <span>MWh</span>
             </div>
           </div>
         </div>
       </Card>
       <Card>
-        <div className='flex h-full justify-between'>
+        <div className='flex justify-between h-full'>
           <div className='flex items-center ml-8 font-bold'>
             <span>CO2저감량</span>
           </div>
           <div className='flex items-center'>
-            <div className='mr-3 w-full font-bold text-4xl'>
+            <div className='w-full mr-3 text-4xl font-bold'>
               {totalco2}
             </div>
-            <div className='text-xs font-bold mr-8 w-8 flex flex-col'>
+            <div className='flex flex-col w-8 mr-8 text-xs font-bold'>
               <span className='-mb-1'>tCO2eq</span>
               <span className='-mb-2'>/MWh</span>
             </div>

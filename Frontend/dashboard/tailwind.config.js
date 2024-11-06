@@ -19,7 +19,9 @@ export default {
       },
       colors: {
         // 'ikea-yellow': '#FBD90B',
-        'ikea-yellow': '#FFE300',
+        // 'ikea-yellow': '#FFE300',
+        'ikea-yellow': '#FFD600',
+
         'ikea-blue': '#0057AE',
       },
       fontSize: {
