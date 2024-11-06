@@ -14,7 +14,7 @@ const DataField = () => {
             <div className='mr-3 w-full font-bold text-4xl'>
               1550.0
             </div>
-            <div className='mt-3 font-bold mr-8 w-8'>
+            <div className='mt-4 font-bold mr-8 w-8'>
               <span>kW</span>
             </div>
           </div>
@@ -29,7 +29,7 @@ const DataField = () => {
             <div className='mr-3 w-full font-bold text-4xl'>
               151.2
             </div>
-            <div className='mt-3 font-bold mr-8 w-8'>
+            <div className='mt-4 font-bold mr-8 w-8'>
               <span>kWh</span>
             </div>
           </div>
@@ -44,7 +44,7 @@ const DataField = () => {
             <div className='mr-3 w-full font-bold text-4xl'>
               17777
             </div>
-            <div className='mt-3 font-bold mr-8 w-8'>
+            <div className='mt-4 font-bold mr-8 w-8'>
               <span>MWh</span>
             </div>
           </div>
@@ -59,8 +59,9 @@ const DataField = () => {
             <div className='mr-3 w-full font-bold text-4xl'>
               151.2
             </div>
-            <div className='mt-3 font-bold mr-8 w-8'>
-              <span>tCO2</span>
+            <div className='text-xs font-bold mr-8 w-8 flex flex-col'>
+              <span className='-mb-1'>tCO2eq</span>
+              <span className='-mb-2'>/MWh</span>
             </div>
           </div>
         </div>
