@@ -56,10 +56,10 @@ const RealtimeDate = () => {
 
   return (
     <div>
-      <div className='flex items-center justify-center text-md'>
+      <div className='flex items-center justify-center text-sm'>
         {currentDate}
       </div>
-      <div className='flex items-center justify-center text-3xl font-extrabold'>
+      <div className='flex items-center justify-center text-3xl font-bold'>
         {currentDay}
       </div>
       {/* {currentTime} */}

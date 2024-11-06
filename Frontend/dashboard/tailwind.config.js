@@ -18,11 +18,18 @@ export default {
         'span-16': 'span 16 / span 16', // col-span-16 추가
       },
       colors: {
-        'ikea-yellow': '#FBD90B',
+        // 'ikea-yellow': '#FBD90B',
+        'ikea-yellow': '#FFE300',
         'ikea-blue': '#0057AE',
       },
       fontSize: {
         '21px': '21px', // 사용자 정의 크기 (30px)
+      },
+      fontFamily: {
+        sans: ["Poppins", "Arial", "sans-serif"],
+        // sans가 제일 기본 상속 폰트이므로 전체 폰트바꾸려면 sans재지정후 맨앞에 원하는 폰트 넣기
+
+        hi: ["PretendardVariable", "sans-serif"],
       },
     },
   },

@@ -1,13 +1,13 @@
 import {React} from 'react'
 
 // import { MdSunny } from "react-icons/md";
-import WeatherDisplay from './WeatherDisplay';
+// import WeatherDisplay from './WeatherDisplay';
 import RealtimeDate from './RealtimeDate';
 
 import { useSelector, shallowEqual } from 'react-redux';
 
 const DayInfo = () => {
-  const currentWeather = useSelector((state) => state.dayinfo.weather, shallowEqual)
+  // const currentWeather = useSelector((state) => state.dayinfo.weather, shallowEqual)
   const facilityCapacity = useSelector((state)=> state.dayinfo.facilityCapacity, shallowEqual)
   const tempval = useSelector((state)=> state.dayinfo.tempval, shallowEqual)
   const tempmin = useSelector((state)=> state.dayinfo.tempmin, shallowEqual)
@@ -22,14 +22,14 @@ const DayInfo = () => {
           </div>
           <div className='flex items-center justify-center flex-1 w-1/3'>
             {/* <WeatherDisplay weather={currentWeather} /> */}
-            <img src={sky} alt="Weather" className='p-3' />
+            <img src={sky} alt="Weather" className='p-5' />
           </div>
           <div className='relative flex items-center justify-between flex-1 w-1/3 mr-2'>
-            <div className='text-6xl font-extrabold'>
+            <div className='text-6xl font-bold'>
               <span>{tempval}°</span>
               {/* <span>27°</span> */}
             </div>
-            <div className='mt-8 text-2xl text-gray-400 absolute transform left-[70%] ml-3'>
+            <div className='mt-6 text-2xl text-gray-400 absolute transform left-[70%] ml-3'>
               <span>{tempmin}</span>
               {/* <span>20</span> */}
             </div>
@@ -42,10 +42,10 @@ const DayInfo = () => {
             <span>설비용량</span>
           </div>
           <div className='flex items-center'>
-            <div className='w-full mr-2 text-5xl font-extrabold'>
+            <div className='w-full mr-2 text-5xl font-bold'>
               {facilityCapacity}
             </div>
-            <div className='w-8 mt-4 mr-8 text-3xl font-extrabold'>
+            <div className='w-8 mt-4 mr-8 text-3xl font-bold'>
               <span>kW</span>
             </div>
           </div>
