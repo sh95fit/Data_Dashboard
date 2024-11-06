@@ -1,8 +1,16 @@
 import React from 'react'
 import Card from './Card'
 
+import { useSelector, shallowEqual } from 'react-redux';
+
+import NumberWithComma from '../utils/NumberWithComma'
 
 const DataField = () => {
+  const outp = useSelector((state) => state.datafield.outp, shallowEqual)
+  const todaycpg = useSelector((state) => state.datafield.todaycpg, shallowEqual)
+  const accmcpg = useSelector((state) => state.datafield.accmcpg, shallowEqual)
+  const totalco2 = useSelector((state) => state.datafield.totalco2, shallowEqual)
+
   return (
     <div className='flex flex-col items-center justify-center h-full m-7 gap-5'>
       <Card>
@@ -12,7 +20,7 @@ const DataField = () => {
           </div>
           <div className='flex items-center'>
             <div className='mr-3 w-full font-bold text-4xl'>
-              1550.0
+              {outp}
             </div>
             <div className='mt-4 font-bold mr-8 w-8'>
               <span>kW</span>
@@ -27,7 +35,8 @@ const DataField = () => {
           </div>
           <div className='flex items-center'>
             <div className='mr-3 w-full font-bold text-4xl'>
-              151.2
+              {/* {todaycpg} */}
+              <NumberWithComma value={todaycpg} />
             </div>
             <div className='mt-4 font-bold mr-8 w-8'>
               <span>kWh</span>
@@ -42,7 +51,7 @@ const DataField = () => {
           </div>
           <div className='flex items-center'>
             <div className='mr-3 w-full font-bold text-4xl'>
-              17777
+              {accmcpg}
             </div>
             <div className='mt-4 font-bold mr-8 w-8'>
               <span>MWh</span>
@@ -57,7 +66,7 @@ const DataField = () => {
           </div>
           <div className='flex items-center'>
             <div className='mr-3 w-full font-bold text-4xl'>
-              151.2
+              {totalco2}
             </div>
             <div className='text-xs font-bold mr-8 w-8 flex flex-col'>
               <span className='-mb-1'>tCO2eq</span>

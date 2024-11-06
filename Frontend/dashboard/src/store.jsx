@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit"
 import dayInfoSlice from "./slice/dayInfoSlice";
+import dataFieldSlice from "./slice/dataFieldSlice"
 
 import { createLogger } from "redux-logger";
+
+import { fetchSidebarData } from './apis/fetchSidebarThunk';
 
 const logger = createLogger({
   predicate: (getState, action) => {
@@ -12,6 +15,7 @@ const logger = createLogger({
 const store = configureStore({
   reducer:{
     dayinfo:dayInfoSlice.reducer,
+    datafield:dataFieldSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => {
     const middlewares = getDefaultMiddleware();
@@ -23,5 +27,7 @@ const store = configureStore({
     return middlewares;
   },
 });
+
+store.dispatch(fetchSidebarData());
 
 export default store;

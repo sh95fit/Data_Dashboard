@@ -10,7 +10,12 @@ const dayInfoSlice = createSlice({
     currentDate:'',
     currentDay:'',
     currentTime:'',
-    facilityCapacity: '910.56'
+    facilityCapacity: '910.56',
+    tempval: 0,
+    tempmin: 0,
+    sky: "images/weather/sun.svg",
+    loading: false,
+    error: null,
   }, // 초기값
 
   reducers:{    // reducer 복수형!
@@ -34,7 +39,24 @@ const dayInfoSlice = createSlice({
     // setCurrentTime:(state, action) => {
     //   state.currentTime = action.payload;
     // },
-  }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchSidebarData.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchSidebarData.fulfilled, (state, action) => {
+        state.loading = false;
+        // tempval과 skyval만 저장
+        state.tempval = action.payload.tempval;
+        state.tempmin = action.payload.tempmin;
+        state.sky = action.payload.sky;
+      })
+      .addCase(fetchSidebarData.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+  },
 });
 
 export const {setWeather, setCurrentDateAndTime, setFacilityCapacity} = dayInfoSlice.actions;
