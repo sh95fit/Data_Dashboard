@@ -40,9 +40,6 @@ const RealtimeDate = () => {
       // 시간 형식: 14:30:00 (24시간제)
       const formattedTime = `${String(koreaTime.getHours()).padStart(2, '0')}:${String(koreaTime.getMinutes()).padStart(2, '0')}:${String(koreaTime.getSeconds()).padStart(2, '0')}`;
 
-      // setCurrentDate(formattedDate);
-      // setCurrentDay(formattedDay);
-      // setCurrentTime(formattedTime);
       handleDate(formattedDate, formattedDay, formattedTime)
     };
 

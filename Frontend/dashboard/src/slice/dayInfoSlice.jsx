@@ -20,7 +20,7 @@ const dayInfoSlice = createSlice({
     error: null,
   }, // 초기값
 
-  reducers:{    // reducer 복수형!
+  reducers:{
     setWeather:(state, action) => {
       state.weather = action.payload;
     },
@@ -32,60 +32,32 @@ const dayInfoSlice = createSlice({
     setFacilityCapacity: (state, action) => {
       state.facilityCapacity = action.payload;
     }
-    // setCurrentDate:(state, action) => {
-    //   state.currentDate = action.payload;
-    // },
-    // setCurrentDay:(state, action) => {
-    //   state.currentDay = action.payload;
-    // },
-    // setCurrentTime:(state, action) => {
-    //   state.currentTime = action.payload;
-    // },
   },
-  // extraReducers: (builder) => {
-  //   builder
-  //     .addCase(fetchSidebarData.pending, (state) => {
-  //       state.loading = true;
-  //     })
-  //     .addCase(fetchSidebarData.fulfilled, (state, action) => {
-  //       state.loading = false;
-  //       // tempval과 skyval만 저장
-  //       state.tempval = action.payload.tempval;
-  //       state.tempmin = action.payload.tempmin;
-  //       state.sky = action.payload.sky;
-  //     })
-  //     .addCase(fetchSidebarData.rejected, (state, action) => {
-  //       state.loading = false;
-  //       state.error = action.error.message;
-  //     });
-  // },
   extraReducers: (builder) => {
     builder
       .addMatcher(
-        dataApi.endpoints.fetchSidebarData.matchFulfilled,
+        (action) => dataApi.endpoints.fetchSidebarData.matchPending(action) ||
+                    dataApi.endpoints.fetchSidebarData.matchFulfilled(action) ||
+                    dataApi.endpoints.fetchSidebarData.matchRejected(action),
         (state, action) => {
-          state.tempval = action.payload.tempval;
-          state.tempmin = action.payload.tempmin;
-          state.sky = action.payload.sky;
-          state.loading = false;
+          if (dataApi.endpoints.fetchSidebarData.matchPending(action)) {
+            state.loading = true;
+          }
+          if (dataApi.endpoints.fetchSidebarData.matchFulfilled(action)) {
+            state.loading = false;
+            state.tempval = action.payload.tempval;
+            state.tempmin = action.payload.tempmin;
+            state.sky = action.payload.sky;
+            state.loading = false;
+          }
+          if (dataApi.endpoints.fetchSidebarData.matchRejected(action)) {
+            state.loading = false;
+            state.error = action.error.message;
+          }
         }
       )
-      .addMatcher(
-        dataApi.endpoints.fetchSidebarData.matchPending,
-        (state) => {
-          state.loading = true;
-        }
-      )
-      .addMatcher(
-        dataApi.endpoints.fetchSidebarData.matchRejected,
-        (state, action) => {
-          state.loading = false;
-          state.error = action.error.message;
-        }
-      );
   }
 });
 
 export const {setWeather, setCurrentDateAndTime, setFacilityCapacity} = dayInfoSlice.actions;
-// export const {setWeather, setCurrentDate, setCurrentDay, setCurrentTime} = dayInfoSlice.actions;
 export default dayInfoSlice;

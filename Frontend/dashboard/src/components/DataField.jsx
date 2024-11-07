@@ -8,11 +8,6 @@ import NumberWithComma from '../utils/NumberWithComma'
 import { useFetchSidebarDataQuery } from "../apis/fetchSidebarApi";
 
 const DataField = () => {
-  // const outp = useSelector((state) => state.datafield.outp, shallowEqual)
-  // const todaycpg = useSelector((state) => state.datafield.todaycpg, shallowEqual)
-  // const accmcpg = useSelector((state) => state.datafield.accmcpg, shallowEqual)
-  // const totalco2 = useSelector((state) => state.datafield.totalco2, shallowEqual)
-
   const { outp, todaycpg, accmcpg, totalco2, loading, error } = useSelector((state) => state.datafield, shallowEqual);
 
   return (

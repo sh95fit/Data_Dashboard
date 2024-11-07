@@ -8,10 +8,7 @@ import { useSelector, shallowEqual } from 'react-redux';
 
 const DayInfo = () => {
   // const currentWeather = useSelector((state) => state.dayinfo.weather, shallowEqual)
-  const facilityCapacity = useSelector((state)=> state.dayinfo.facilityCapacity, shallowEqual)
-  const tempval = useSelector((state)=> state.dayinfo.tempval, shallowEqual)
-  const tempmin = useSelector((state)=> state.dayinfo.tempmin, shallowEqual)
-  const sky = useSelector((state)=> state.dayinfo.sky, shallowEqual)
+  const { facilityCapacity, tempval, tempmin, sky, loading, error } = useSelector((state) => state.dayinfo, shallowEqual);
 
   return (
     <div className='w-full h-full bg-white'>
