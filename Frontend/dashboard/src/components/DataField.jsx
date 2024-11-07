@@ -1,23 +1,23 @@
 import React from 'react'
 import Card from './Card'
 
-// import { useSelector, shallowEqual } from 'react-redux';
+import { useSelector, shallowEqual } from 'react-redux';
 
 import NumberWithComma from '../utils/NumberWithComma'
 
-import { useFetchSidebarDataQuery } from "../apis/fetchSidebarApi";
+// import { useFetchSidebarDataQuery } from "../apis/fetchSidebarApi";
 
 const DataField = () => {
-  // const { outp, todaycpg, accmcpg, totalco2, loading, error } = useSelector((state) => state.datafield, shallowEqual);
+  const { outp, todaycpg, accmcpg, totalco2, loading, error } = useSelector((state) => state.datafield, shallowEqual);
 
-  const { data, error, isLoading } = useFetchSidebarDataQuery();
+  // const { data, error, isLoading } = useFetchSidebarDataQuery();
 
-  const outp = data?.outp ?? 0;
-  const todaycpg = data?.todaycpg ?? 0;
-  const accmcpg = data?.accmcpg ?? 0;
-  const totalco2 = data?.totalco2 ?? 0;
-  const loading = data?.isLoading ?? false;
-  const err = data?.error ?? null;
+  // const outp = data?.outp ?? 0;
+  // const todaycpg = data?.todaycpg ?? 0;
+  // const accmcpg = data?.accmcpg ?? 0;
+  // const totalco2 = data?.totalco2 ?? 0;
+  // const loading = data?.isLoading ?? false;
+  // const err = data?.error ?? null;
 
   return (
     <div className='flex flex-col items-center justify-center h-full gap-5 m-7'>

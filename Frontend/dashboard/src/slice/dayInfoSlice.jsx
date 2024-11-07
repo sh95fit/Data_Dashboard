@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 // import { fetchSidebarData } from "../apis/fetchSidebarThunk";
 
-// import { dataApi } from "../apis/fetchSidebarApi";
+import { dataApi } from "../apis/fetchSidebarApi";
 
 const dayInfoSlice = createSlice({
   name: 'dayinfo',  // Slice의 이름 정의
@@ -12,12 +12,12 @@ const dayInfoSlice = createSlice({
     currentDate:'',
     currentDay:'',
     currentTime:'',
-    // facilityCapacity: '910.56',
-    // tempval: 0,
-    // tempmin: 0,
-    // sky: "images/weather/sun.svg",
-    // loading: false,
-    // error: null,
+    facilityCapacity: '910.56',
+    tempval: 0,
+    tempmin: 0,
+    sky: "images/weather/sun.svg",
+    loading: false,
+    error: null,
   }, // 초기값
 
   reducers:{
@@ -33,30 +33,30 @@ const dayInfoSlice = createSlice({
     //   state.facilityCapacity = action.payload;
     // }
   },
-  // extraReducers: (builder) => {
-  //   builder
-  //     .addMatcher(
-  //       (action) => dataApi.endpoints.fetchSidebarData.matchPending(action) ||
-  //                   dataApi.endpoints.fetchSidebarData.matchFulfilled(action) ||
-  //                   dataApi.endpoints.fetchSidebarData.matchRejected(action),
-  //       (state, action) => {
-  //         if (dataApi.endpoints.fetchSidebarData.matchPending(action)) {
-  //           state.loading = true;
-  //         }
-  //         if (dataApi.endpoints.fetchSidebarData.matchFulfilled(action)) {
-  //           state.loading = false;
-  //           state.tempval = action.payload.tempval;
-  //           state.tempmin = action.payload.tempmin;
-  //           state.sky = action.payload.sky;
-  //           state.loading = false;
-  //         }
-  //         if (dataApi.endpoints.fetchSidebarData.matchRejected(action)) {
-  //           state.loading = false;
-  //           state.error = action.error.message;
-  //         }
-  //       }
-  //     )
-  // }
+  extraReducers: (builder) => {
+    builder
+      .addMatcher(
+        (action) => dataApi.endpoints.fetchSidebarData.matchPending(action) ||
+                    dataApi.endpoints.fetchSidebarData.matchFulfilled(action) ||
+                    dataApi.endpoints.fetchSidebarData.matchRejected(action),
+        (state, action) => {
+          if (dataApi.endpoints.fetchSidebarData.matchPending(action)) {
+            state.loading = true;
+          }
+          if (dataApi.endpoints.fetchSidebarData.matchFulfilled(action)) {
+            state.loading = false;
+            state.tempval = action.payload.tempval;
+            state.tempmin = action.payload.tempmin;
+            state.sky = action.payload.sky;
+            state.loading = false;
+          }
+          if (dataApi.endpoints.fetchSidebarData.matchRejected(action)) {
+            state.loading = false;
+            state.error = action.error.message;
+          }
+        }
+      )
+  }
 });
 
 // export const {setWeather, setCurrentDateAndTime, setFacilityCapacity} = dayInfoSlice.actions;

@@ -17,7 +17,7 @@ const logger = createLogger({
 const store = configureStore({
   reducer:{
     dayinfo:dayInfoSlice.reducer,
-    // datafield:dataFieldSlice.reducer,  // 미사용 (RTK Tookit으로 처리)
+    datafield:dataFieldSlice.reducer,
     [dataApi.reducerPath]: dataApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
