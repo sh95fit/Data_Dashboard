@@ -25,7 +25,7 @@ const DayInfo = () => {
             <img src={sky} alt="Weather" className='p-5' />
           </div>
           <div className='relative flex items-center justify-between flex-1 w-1/3 mr-2'>
-            <div className='text-6xl font-bold'>
+            <div className='ml-3 text-6xl font-bold'>
               <span>{tempval}°</span>
               {/* <span>27°</span> */}
             </div>

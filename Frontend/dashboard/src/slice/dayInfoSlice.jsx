@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit"
 
 import { fetchSidebarData } from "../apis/fetchSidebarThunk";
 
+import { dataApi } from "../apis/fetchSidebarApi";
+
 const dayInfoSlice = createSlice({
   name: 'dayinfo',  // Slice의 이름 정의
 
@@ -40,23 +42,48 @@ const dayInfoSlice = createSlice({
     //   state.currentTime = action.payload;
     // },
   },
+  // extraReducers: (builder) => {
+  //   builder
+  //     .addCase(fetchSidebarData.pending, (state) => {
+  //       state.loading = true;
+  //     })
+  //     .addCase(fetchSidebarData.fulfilled, (state, action) => {
+  //       state.loading = false;
+  //       // tempval과 skyval만 저장
+  //       state.tempval = action.payload.tempval;
+  //       state.tempmin = action.payload.tempmin;
+  //       state.sky = action.payload.sky;
+  //     })
+  //     .addCase(fetchSidebarData.rejected, (state, action) => {
+  //       state.loading = false;
+  //       state.error = action.error.message;
+  //     });
+  // },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchSidebarData.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(fetchSidebarData.fulfilled, (state, action) => {
-        state.loading = false;
-        // tempval과 skyval만 저장
-        state.tempval = action.payload.tempval;
-        state.tempmin = action.payload.tempmin;
-        state.sky = action.payload.sky;
-      })
-      .addCase(fetchSidebarData.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-      });
-  },
+      .addMatcher(
+        dataApi.endpoints.fetchSidebarData.matchFulfilled,
+        (state, action) => {
+          state.tempval = action.payload.tempval;
+          state.tempmin = action.payload.tempmin;
+          state.sky = action.payload.sky;
+          state.loading = false;
+        }
+      )
+      .addMatcher(
+        dataApi.endpoints.fetchSidebarData.matchPending,
+        (state) => {
+          state.loading = true;
+        }
+      )
+      .addMatcher(
+        dataApi.endpoints.fetchSidebarData.matchRejected,
+        (state, action) => {
+          state.loading = false;
+          state.error = action.error.message;
+        }
+      );
+  }
 });
 
 export const {setWeather, setCurrentDateAndTime, setFacilityCapacity} = dayInfoSlice.actions;

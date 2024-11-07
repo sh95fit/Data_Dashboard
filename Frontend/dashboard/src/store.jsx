@@ -6,6 +6,8 @@ import { createLogger } from "redux-logger";
 
 import { fetchSidebarData } from './apis/fetchSidebarThunk';
 
+import { dataApi } from './apis/fetchSidebarApi'
+
 const logger = createLogger({
   predicate: (getState, action) => {
     return action.type !== 'dayinfo/setCurrentDateAndTime';
@@ -16,18 +18,23 @@ const store = configureStore({
   reducer:{
     dayinfo:dayInfoSlice.reducer,
     datafield:dataFieldSlice.reducer,
+    [dataApi.reducerPath]: dataApi.reducer,
   },
-  middleware: (getDefaultMiddleware) => {
-    const middlewares = getDefaultMiddleware();
+  // middleware: (getDefaultMiddleware) => {
+  //   const middlewares = getDefaultMiddleware();
 
-    if (process.env.NODE_ENV === 'development') {
-      middlewares.push(logger);
-    }
+  //   if (process.env.NODE_ENV === 'development') {
+  //     middlewares.push(logger);
+  //   }
 
-    return middlewares;
-  },
+  //   return middlewares;
+  // },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware()
+      .concat(dataApi.middleware) // dataApi의 미들웨어 추가
+      .concat(process.env.NODE_ENV === 'development' ? [logger] : []), // 개발 환경에서만 로거 추가
 });
 
-store.dispatch(fetchSidebarData());
+// store.dispatch(fetchSidebarData());
 
 export default store;
