@@ -4,6 +4,8 @@ import { fetchSidebarData } from "../apis/fetchSidebarThunk";
 
 import { dataApi } from "../apis/fetchSidebarApi";
 
+
+// 미사용 (RTK Tookit으로 처리)
 const dataFieldSlice = createSlice({
   name: 'datafield',  // Slice의 이름 정의
 

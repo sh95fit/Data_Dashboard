@@ -4,11 +4,22 @@ import {React} from 'react'
 // import WeatherDisplay from './WeatherDisplay';
 import RealtimeDate from './RealtimeDate';
 
-import { useSelector, shallowEqual } from 'react-redux';
+// import { useSelector, shallowEqual } from 'react-redux';
+
+import { useFetchSidebarDataQuery } from '../apis/fetchSidebarApi'
 
 const DayInfo = () => {
   // const currentWeather = useSelector((state) => state.dayinfo.weather, shallowEqual)
-  const { facilityCapacity, tempval, tempmin, sky, loading, error } = useSelector((state) => state.dayinfo, shallowEqual);
+  // const { facilityCapacity, tempval, tempmin, sky, loading, error } = useSelector((state) => state.dayinfo, shallowEqual);
+
+  const { data, error, isLoading } = useFetchSidebarDataQuery();
+
+  const sky = data?.sky ?? "images/weather/sun.svg";
+  const tempval = data?.tempval ?? 0;
+  const tempmin = data?.tempmin ?? 0;
+  const facilityCapacity = data?.capacity ?? '910.56';
+  const loading = data?.isLoading ?? false;
+  const err = data?.error ?? null;
 
   return (
     <div className='w-full h-full bg-white'>
