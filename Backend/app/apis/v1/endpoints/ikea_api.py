@@ -14,7 +14,7 @@ router = APIRouter(
 
 
 @router.get("/plant/{untid}/{pwrid}", response_model=List[PlantSchema])
-def call_plant(untid: str, pwrid: str, db: Session = Depends(get_db)):
-    plant = plant_info(db, untid, pwrid)
+async def call_plant(untid: str, pwrid: str, db: Session = Depends(get_db)):
+    plant = await plant_info(db, untid, pwrid)
     # return [PlantSchema(ivtid=row[0], uninm=row[1], idx=row[2]) for row in plant]
     return plant

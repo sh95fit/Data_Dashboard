@@ -6,15 +6,37 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 
 from app.core.config import DATABASE_URL
 
-engine = create_engine(DATABASE_URL)
-
-Session = sessionmaker(
-    # 해당 세션은 지정된 engine과 연결된 데이터베이스를 사용
-    bind=engine,
-    # 트랜잭션을 명시적으로 커밋하지 않도록 설정 (자동 커밋 방지)
-    autocommit=False,
-    # 쿼리 실행 전에 자동으로 변경된 데이터를 플러시하지 않도록 설정 (쿼리를 적용해야만 객체들이 데이터베이스에 반영)
-    autoflush=False,
+# 비동기 엔진 설정
+from sqlalchemy.ext.asyncio import (
+    create_async_engine,
+    AsyncSession,
+    async_sessionmaker
 )
+
+# 비동기 설정
+engine = create_async_engine(
+    DATABASE_URL, echo=True
+)
+
+Session = async_sessionmaker(
+    engine,
+    autocommit=False,
+    autoflush=False,
+    expire_on_commit=False,
+    class_=AsyncSession,
+)
+
+
+# 기본 설정
+# engine = create_engine(DATABASE_URL)
+
+# Session = sessionmaker(
+#     # 해당 세션은 지정된 engine과 연결된 데이터베이스를 사용
+#     bind=engine,
+#     # 트랜잭션을 명시적으로 커밋하지 않도록 설정 (자동 커밋 방지)
+#     autocommit=False,
+#     # 쿼리 실행 전에 자동으로 변경된 데이터를 플러시하지 않도록 설정 (쿼리를 적용해야만 객체들이 데이터베이스에 반영)
+#     autoflush=False,
+# )
 
 Base = declarative_base()
