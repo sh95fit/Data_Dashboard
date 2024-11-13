@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit"
-import dayInfoSlice from "./slice/dayInfoSlice";
-import dataFieldSlice from "./slice/dataFieldSlice"
-
 import { createLogger } from "redux-logger";
 
-import { fetchSidebarData } from './apis/fetchSidebarThunk';
 
-import { dataApi } from './apis/fetchSidebarApi'
+import dayInfoSlice from "./ikea/slice/dayInfoSlice";
+import dataFieldSlice from "./ikea/slice/dataFieldSlice"
+import { fetchSidebarData } from './ikea/apis/fetchSidebarThunk';
+import { dataApi } from './ikea/apis/fetchSidebarApi'
+
 
 const logger = createLogger({
   predicate: (getState, action) => {
