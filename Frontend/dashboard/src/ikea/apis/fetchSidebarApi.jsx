@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const dataApi = createApi({
   reducerPath: "dataApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://20.20.20.118:8080/api/board"}),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8080/api/board"}),
   endpoints: (builder) => ({
     fetchSidebarData: builder.query({
       query: () => 'ikea',

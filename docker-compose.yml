@@ -1,29 +1,43 @@
-version: "3.8"
+# version: "3.9"
 
 services :
 
-  frontend:
-    build:
-      context: ./Frontend/dashboard/.
-      dockerfile: Dockerfile
-    container_name: react_build
-    tty: true
-    volumes:
-      - ./Frontend/dashboard/dist:/src/dist
-    depends_on:
-      - backend
-    networks:
-      - dash_net
+  # frontend:
+  #   build:
+  #     context: ./Frontend/dashboard/.
+  #     dockerfile: Dockerfile
+  #   container_name: react_build
+  #   tty: true
+  #   volumes:
+  #     - ./Frontend/dashboard/:/src/
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - dash_net
+
+  # backend:
+  #   build:
+  #     context: ./Backend/.
+  #     dockerfile: Dockerfile
+  #   container_name: fastapi_backend
+  #   restart: always
+  #   tty: true
+  #   ports:
+  #     - 8888:8888
+  #   networks:
+  #     - dash_net
 
   backend:
     build:
-      context: ./Backend/.
+      context: ./Backend/server/.
       dockerfile: Dockerfile
-    container_name: fastapi_backend
+    container_name: spring_backend
     restart: always
     tty: true
+    volumes:
+      - ./Backend/server/:/app/
     ports:
-      - 8888:8888
+      - "8080:8080"
     networks:
       - dash_net
 
@@ -42,7 +56,7 @@ services :
       - ./Frontend/dashboard/dist:/usr/share/nginx/html
     depends_on:
       - backend
-      - frontend
+      # - frontend
 
 
 networks:
