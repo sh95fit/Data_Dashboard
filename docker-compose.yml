@@ -34,6 +34,8 @@ services :
     container_name: spring_backend
     restart: always
     tty: true
+    environment:
+      - TZ=Asia/Seoul
     volumes:
       - ./Backend/server/:/app/
     ports:
@@ -49,6 +51,8 @@ services :
     container_name: dashboard_nginx
     restart: always
     tty: true
+    environment:
+      - TZ=Asia/Seoul
     networks:
       - dash_net
     ports:
@@ -56,11 +60,21 @@ services :
       - "443:443"
     volumes:
       - ./Frontend/dashboard/dist:/usr/share/nginx/html
-      - ./Nginx/conf.d:/etc/nginx/conf.d
+      - ./Nginx/conf.d/:/usr/local/nginx/conf.d/
+      - ./Nginx/nginx.conf:/usr/local/nginx/conf/nginx.conf
+      - ./Nginx/fail2ban/jail.conf:/etc/fail2ban/jail.conf
+      - ./Nginx/fail2ban/jail.conf:/etc/fail2ban/jail.local
+      - ./Nginx/fail2ban/filter.d/:/etc/fail2ban/filter.d/
+      - ./Nginx/modsecurity/modsecurity.conf:/usr/local/nginx/conf/modsecurity.conf
+      - ./Nginx/modsecurity/modsec_includes.conf:/usr/local/nginx/conf/modsec_includes.conf
+      - ./Nginx/modsecurity/crs-setup.conf:/usr/local/nginx/conf/rules/crs-setup.conf
+      - ./Nginx/logs/nginx/:/usr/local/nginx/logs/
+      - ./Nginx/logs/ts_nginx/:/var/log/nginx/
+      - ./Nginx/logs/total/:/var/log/
     depends_on:
       - backend
       # - frontend
-    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    # command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
 
 
 networks:
