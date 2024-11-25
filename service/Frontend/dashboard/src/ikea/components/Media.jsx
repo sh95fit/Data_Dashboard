@@ -4,7 +4,7 @@ const Media = () => {
   return (
     <div className='w-full h-full'>
       <video
-        src={`/video/IKEA_ad_only.mp4`}
+        src={`/video/IKEA_OUT.mp4`}
         autoPlay
         loop
         muted

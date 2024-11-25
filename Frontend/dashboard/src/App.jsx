@@ -1,6 +1,8 @@
 import './App.css'
 import IkeaDashboard from './ikea/pages/IkeaDashboard'
-import DataFetcher from './ikea/components/SidebarDataFetcher'
+import IkeaDataFetcher from './ikea/components/SidebarDataFetcher'
+import DensoDashboard from './denso/pages/DensoDashboard'
+import DensoDataFetcher from './denso/components/SidebarDataFetcher'
 
 // import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import { createBrowserRouter, RouterProvider} from "react-router-dom"
@@ -12,7 +14,18 @@ const router = createBrowserRouter([
       <>
         <IkeaDashboard />
         <div style={{ display: 'none' }}>
-          <DataFetcher />
+          <IkeaDataFetcher />
+        </div>
+      </>
+    ),
+  },
+  {
+    path: "/denso",
+    element:(
+      <>
+        <DensoDashboard />
+        <div style={{ display: 'none' }}>
+          <DensoDataFetcher />
         </div>
       </>
     ),

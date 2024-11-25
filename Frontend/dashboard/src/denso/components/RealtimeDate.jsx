@@ -10,9 +10,9 @@ const RealtimeDate = () => {
   // const [currentTime, setCurrentTime] = useState("");
 
   const dispatch = useDispatch();
-  const currentDate = useSelector((state) => state.dayinfo_ikea.currentDate);
-  const currentDay = useSelector((state) => state.dayinfo_ikea.currentDay);
-  const currentTime = useSelector((state) => state.dayinfo_ikea.currentTime);
+  const currentDate = useSelector((state) => state.dayinfo_denso.currentDate);
+  const currentDay = useSelector((state) => state.dayinfo_denso.currentDay);
+  const currentTime = useSelector((state) => state.dayinfo_denso.currentTime);
 
   const handleDate = (currentDate, currentDay, currentTime) => {
     dispatch(setCurrentDateAndTime({

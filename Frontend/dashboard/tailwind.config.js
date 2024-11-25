@@ -21,8 +21,8 @@ export default {
         // 'ikea-yellow': '#FBD90B',
         // 'ikea-yellow': '#FFE300',
         'ikea-yellow': '#FFD600',
-
         'ikea-blue': '#0057AE',
+        'denso-gray': 'rgb(195, 194, 188)'
       },
       fontSize: {
         '21px': '21px', // 사용자 정의 크기 (30px)

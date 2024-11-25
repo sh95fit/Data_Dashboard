@@ -5,7 +5,7 @@ import { createSlice } from "@reduxjs/toolkit"
 import { dataApi } from "../apis/fetchSidebarApi";
 
 const dayInfoSlice = createSlice({
-  name: 'dayinfo_ikea',  // Slice의 이름 정의
+  name: 'dayinfo_denso',  // Slice의 이름 정의
 
   initialState:{
     // weather:"sunny",

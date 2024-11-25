@@ -6,7 +6,7 @@ import { dataApi } from "../apis/fetchSidebarApi";
 
 
 const dataFieldSlice = createSlice({
-  name: 'datafield_ikea',  // Slice의 이름 정의
+  name: 'datafield_denso',  // Slice의 이름 정의
 
   initialState:{
     outp: 0,
