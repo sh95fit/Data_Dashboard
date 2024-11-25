@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 import { dataApi } from "../apis/fetchSidebarApi";
 
 const dayInfoSlice = createSlice({
-  name: 'dayinfo',
+  name: 'dayinfo_ikea',
 
   initialState:{
     // weather:"sunny",

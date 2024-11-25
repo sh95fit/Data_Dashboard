@@ -4,9 +4,9 @@ import { setCurrentDateAndTime } from '../slice/dayInfoSlice'
 
 const RealtimeDate = () => {
   const dispatch = useDispatch();
-  const currentDate = useSelector((state) => state.dayinfo.currentDate);
-  const currentDay = useSelector((state) => state.dayinfo.currentDay);
-  const currentTime = useSelector((state) => state.dayinfo.currentTime);
+  const currentDate = useSelector((state) => state.dayinfo_ikea.currentDate);
+  const currentDay = useSelector((state) => state.dayinfo_ikea.currentDay);
+  const currentTime = useSelector((state) => state.dayinfo_ikea.currentTime);
 
   const handleDate = (currentDate, currentDay, currentTime) => {
     dispatch(setCurrentDateAndTime({

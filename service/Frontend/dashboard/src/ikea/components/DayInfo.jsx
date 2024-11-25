@@ -3,7 +3,7 @@ import RealtimeDate from './RealtimeDate';
 import { useSelector, shallowEqual } from 'react-redux';
 
 const DayInfo = () => {
-  const { facilityCapacity, tempval, tempmin, sky, loading, error } = useSelector((state) => state.dayinfo, shallowEqual);
+  const { facilityCapacity, tempval, tempmin, sky, loading, error } = useSelector((state) => state.dayinfo_ikea, shallowEqual);
 
   return (
     <div className='w-full h-full bg-white'>

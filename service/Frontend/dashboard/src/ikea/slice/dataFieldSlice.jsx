@@ -3,7 +3,7 @@ import { dataApi } from "../apis/fetchSidebarApi";
 
 
 const dataFieldSlice = createSlice({
-  name: 'datafield',
+  name: 'datafield_ikea',
 
   initialState:{
     outp: 0,
