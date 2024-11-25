@@ -1,4 +1,5 @@
 import { createRoot } from 'react-dom/client'
+import { HelmetProvider } from 'react-helmet-async'
 import App from './App.jsx'
 import './index.css'
 
@@ -7,6 +8,8 @@ import store from "./store";
 
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <App />
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
   </Provider>
 )
