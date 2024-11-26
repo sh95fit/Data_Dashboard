@@ -12,7 +12,7 @@ const dayInfoSlice = createSlice({
     currentDate:'',
     currentDay:'',
     currentTime:'',
-    facilityCapacity: '910.56',
+    facilityCapacity: '883.26',
     tempval: 0,
     tempmin: 0,
     sky: "images/weather/sun.svg",
