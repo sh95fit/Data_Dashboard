@@ -12,6 +12,7 @@ const IkeaDashboard = () => {
 
       <Helmet>
         <title>DENSO</title>
+        <link rel="icon" href="/favicon/denso/favicon.ico" />
         <link rel="apple-touch-icon" sizes="57x57" href="/favicon/denso/apple-icon-57x57.png"/>
         <link rel="apple-touch-icon" sizes="60x60" href="/favicon/denso/apple-icon-60x60.png"/>
         <link rel="apple-touch-icon" sizes="72x72" href="/favicon/denso/apple-icon-72x72.png"/>
@@ -26,6 +27,9 @@ const IkeaDashboard = () => {
         <link rel="icon" type="image/png" sizes="96x96" href="/favicon/denso/favicon-96x96.png"/>
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/denso/favicon-16x16.png"/>
         <link rel="manifest" href="/favicon/denso/manifest.json"/>
+        {/* <meta property="og:title" content="Denso Korea - Solar Power Dashboard"/>
+        <meta property="og:image" content="https://monitoring.itsmore.co.kr/denso/assets/Denso_logo.png"/>
+        <meta property="og:description" content="This dashboard provides information on the solar power generation status of Denso Korea Changwon branch."/> */}
       </Helmet>
 
 

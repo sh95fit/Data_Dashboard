@@ -1,9 +1,23 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
+import multi from 'vite-plugin-multi-pages';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    // multi({
+    //   pagesDir: 'public', // HTML 파일 경로
+    // }),
+  ],
+  build: {
+    rollupOptions: {
+      input: {
+          denso: './public/company/denso.html',
+          ikea: './public/company/ikea.html',
+      },
+    },
+  },
   server: {
     proxy: {
       '/api': {

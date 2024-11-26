@@ -30,7 +30,7 @@ const DataField = () => {
             <div className='w-full mr-3 text-4xl font-bold'>
               {outp}
             </div>
-            <div className='w-8 mt-4 mr-8 text-lg font-bold'>
+            <div className='w-8 mt-4 text-lg font-bold mr-7'>
               <span>kW</span>
             </div>
           </div>
@@ -46,7 +46,7 @@ const DataField = () => {
               {/* {todaycpg} */}
               <NumberWithComma value={todaycpg} />
             </div>
-            <div className='w-8 mt-4 mr-8 text-lg font-bold'>
+            <div className='w-8 mt-4 text-lg font-bold mr-7'>
               <span>kWh</span>
             </div>
           </div>
@@ -61,7 +61,7 @@ const DataField = () => {
             <div className='w-full mr-3 text-4xl font-bold'>
               {accmcpg}
             </div>
-            <div className='w-8 mt-4 mr-8 text-lg font-bold'>
+            <div className='w-8 mt-4 text-lg font-bold mr-7'>
               <span>MWh</span>
             </div>
           </div>
@@ -76,7 +76,7 @@ const DataField = () => {
             <div className='w-full mr-3 text-4xl font-bold'>
               {totalco2}
             </div>
-            <div className='flex flex-col w-8 mr-8 text-sm font-bold'>
+            <div className='flex flex-col w-8 text-sm font-bold mr-7'>
               <span className='-mb-1'>tCO2eq</span>
               <span className='-mb-2'>/MWh</span>
             </div>

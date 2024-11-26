@@ -27,6 +27,9 @@ const IkeaDashboard = () => {
         <link rel="icon" type="image/png" sizes="96x96" href="/favicon/ikea/favicon-96x96.png"/>
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/ikea/favicon-16x16.png"/>
         <link rel="manifest" href="/favicon/ikea/manifest.json"/>
+        {/* <meta property="og:title" content="IKEA - Solar Power Dashboard"/>
+        <meta property="og:image" content="https://monitoring.itsmore.co.kr/ikea/assets/Ikea_logo.png"/>
+        <meta property="og:description" content="This dashboard provides information on the solar power generation status of IKEA Dongbusan branch."/> */}
       </Helmet>
 
 
