@@ -22,7 +22,10 @@ export default {
         // 'ikea-yellow': '#FFE300',
         'ikea-yellow': '#FFD600',
         'ikea-blue': '#0057AE',
-        'denso-gray': 'rgb(195, 194, 188)'
+        'denso-gray': 'rgb(195, 194, 188)',
+        'grandsun-navy': 'rgb(34, 53, 80)',
+        'grandsun-red': 'rgb(157, 41, 44)',
+        'grandsun-navy-hover': 'rgb(34, 53, 180)',
       },
       fontSize: {
         '21px': '21px', // 사용자 정의 크기 (30px)

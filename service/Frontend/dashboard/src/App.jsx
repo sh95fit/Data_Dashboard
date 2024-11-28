@@ -4,6 +4,7 @@ import IkeaDataFetcher from './ikea/components/SidebarDataFetcher'
 import DensoDashboard from './denso/pages/DensoDashboard'
 import DensoDataFetcher from './denso/components/SidebarDataFetcher'
 import { createBrowserRouter, RouterProvider} from "react-router-dom"
+import ErrorPage from './components/ErrorPage'
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,13 @@ const router = createBrowserRouter([
         </div>
       </>
     ),
+  },
+  {
+    path: "*", // 라우터 외 모든 경로
+    errorElement: <ErrorPage />,
+    loader: async () => {
+      throw { status: 404, statusText: "Not Found" }; // 404 에러 예제
+    },
   },
 ])
 

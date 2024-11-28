@@ -1,3 +1,10 @@
+# # geo 모듈을 사용하여 IP를 검사
+# geo $restricted_ip {
+#     default 1;        # 기본적으로 외부 IP를 차단
+#     127.0.0.1 0;     # localhost는 허용
+#     ::1 0;            # IPv6 localhost는 허용
+# }
+
 server {
     listen 80;
     server_name monitoring.itsmore.co.kr;
@@ -25,15 +32,73 @@ server {
     root /usr/share/nginx/html;
     index index.html;
 
-    location / {
-        try_files $uri $uri/ /index.html;
+    # /robots.txt 경로는 허용
+    location /robots.txt {
+        log_not_found off;
+    }
+
+    # 주요 서빙 설정
+    location /assets/ {
+        root /usr/share/nginx/html;  # /assets 폴더는 /usr/share/nginx/html 아래에 있어야 함
+        try_files $uri $uri/ =404;  # 요청된 파일이 없으면 404 반환
+    }
+
+    location /favicon/ {
+        root /usr/share/nginx/html;  # /favicon 폴더는 /usr/share/nginx/html 아래에 있어야 함
+        try_files $uri $uri/ =404;  # 요청된 파일이 없으면 404 반환
+    }
+
+    location /favicon.ico {
+        alias /usr/share/nginx/html/favicon/grandsun/favicon.ico;
+    }
+
+    location /video/ {
+        root /usr/share/nginx/html;  # /video 폴더는 /usr/share/nginx/html 아래에 있어야 함
+        try_files $uri $uri/ =404;  # 요청된 파일이 없으면 404 반환
+    }
+
+    location /fonts/ {
+        root /usr/share/nginx/html;  # /fonts 폴더는 /usr/share/nginx/html 아래에 있어야 함
+        try_files $uri $uri/ =404;  # 요청된 파일이 없으면 404 반환
+    }
+
+    location /images/ {
+        root /usr/share/nginx/html;  # /images 폴더는 /usr/share/nginx/html 아래에 있어야 함
+        try_files $uri $uri/ =404;  # 요청된 파일이 없으면 404 반환
     }
 
     location /api/ {
+        # if ($restricted_ip) {
+        #     return 403;  # 외부 IP일 경우 403 Forbidden 반환
+        # }
+
         proxy_pass http://backend:8080;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # /ikea 경로에서 ikea.html을 제공
+    location /ikea {
+        try_files /pubilc/company/ikea.html =404;
+    }
+
+    # /denso 경로에서 denso.html을 제공
+    location /denso {
+        try_files /public/company/denso.html =404;
+    }
+
+    # 특정 경로만 허용
+    location / {
+        if ($request_uri !~ ^/(ikea|denso)) {
+            return 403;  # Forbidden
+        }
+
+        try_files $uri $uri/ /index.html;
+    }
+
+    location ~* ^/cgi-bin/ {
+        return 403;
     }
 }

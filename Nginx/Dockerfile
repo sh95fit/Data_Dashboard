@@ -1,75 +1,31 @@
-FROM alpine:3.16.3
+# # Nginx 이미지를 기반으로
+# FROM nginx:stable-alpine
 
-RUN apk update && apk upgrade
-RUN apk add --update wget \
-  tar \
-  autoconf \
-  automake \
-  build-base \
-  git \
-  openssl-dev \
-  curl-dev \
-  geoip-dev \
-  lmdb-dev \
-  pcre-dev \
-  libtool \
-  libxml2-dev \
-  libressl-dev \
-  yajl-dev \
-  pkgconf  \
-  zlib-dev \
-  linux-headers
+# # Certbot 설치 (원격 서버에서 설치 X)
+# RUN apk update && apk add --no-cache certbot
 
-# tzdata 설치
-RUN apk add --no-cache tzdata
-
-# 시간대 설정 (예: Asia/Seoul)
-ENV TZ=Asia/Seoul
-RUN cp /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-
-RUN cd /tmp && git clone https://github.com/SpiderLabs/ModSecurity
-RUN cd /tmp/ModSecurity && git submodule init && git submodule update
-RUN cd /tmp/ModSecurity && ./build.sh && \
-  ./configure && \
-  make && \
-  make install
-
-RUN cd /tmp && git clone --depth 1 https://github.com/SpiderLabs/ModSecurity-nginx.git \
-  && wget http://nginx.org/download/nginx-1.23.2.tar.gz \
-  && tar zxvf nginx-1.23.2.tar.gz
-
-RUN cd /tmp/nginx-1.23.2/ && ./configure  --user=root --group=root --with-debug --with-ipv6	--with-http_ssl_module --with-compat --add-module=/tmp/ModSecurity-nginx --with-http_stub_status_module --without-http_access_module --without-http_auth_basic_module --without-http_autoindex_module --without-http_empty_gif_module --without-http_fastcgi_module --without-http_referer_module --without-http_memcached_module --without-http_scgi_module --without-http_split_clients_module --without-http_ssi_module --without-http_uwsgi_module \
-  && make \
-  && make install
-
-RUN git clone https://github.com/SpiderLabs/owasp-modsecurity-crs.git /usr/src/owasp-modsecurity-crs
-RUN cp -R /usr/src/owasp-modsecurity-crs/rules/ /usr/local/nginx/conf/
-RUN mv /usr/local/nginx/conf/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf.example  /usr/local/nginx/conf/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf
-RUN mv /usr/local/nginx/conf/rules/RESPONSE-999-EXCLUSION-RULES-AFTER-CRS.conf.example  /usr/local/nginx/conf/rules/RESPONSE-999-EXCLUSION-RULES-AFTER-CRS.conf
-
-RUN apk add fail2ban
-RUN rm /etc/fail2ban/jail.d/alpine-ssh.conf
-
-# COPY ./conf.d /etc/nginx/conf.d
+# # Nginx 설정 파일 복사
 # COPY ./nginx.conf /etc/nginx/nginx.conf
 
-COPY ./modsecurity/modsecurity.conf /usr/local/nginx/conf/modsecurity.conf
-COPY ./modsecurity/modsec_includes.conf /usr/local/nginx/conf/modsec_includes.conf
-COPY ./modsecurity/crs-setup.conf /usr/local/nginx/conf/rules/crs-setup.conf
-COPY ./conf.d /usr/local/nginx/conf.d/
-COPY ./nginx.conf /usr/local/nginx/conf/nginx.conf
+# # 인증서 자동 갱신을 위한 스크립트 추가
+# COPY ./certbot.sh /usr/local/bin/certbot.sh
+# RUN chmod +x /usr/local/bin/certbot.sh
+
+# # 80과 443 포트 노출
+# EXPOSE 80 443
+
+# # Nginx 실행 및 certbot을 주기적으로 실행하기 위한 커맨드 설정
+# CMD ["sh", "-c", "/usr/local/bin/certbot.sh && nginx -g 'daemon off;'"]
+
+
+
+# 원본
+# FROM nginx:stable-alpine
+FROM nginx:latest
+
+COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./conf.d/default.conf /etc/nginx/conf.d
 
 EXPOSE 80
 
-# RUN /usr/local/nginx/sbin/nginx -t
-
-CMD rm -f /var/run/fail2ban/fail2ban.sock && \
-  /usr/bin/fail2ban-server start && \
-  echo "Starting Nginx..." && \
-  /usr/local/nginx/sbin/nginx -g "daemon off;"
-
-
-# COPY docker-entrypoint.sh /
-# RUN chmod +x /docker-entrypoint.sh
-# ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]

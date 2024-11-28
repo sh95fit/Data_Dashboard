@@ -1,22 +1,53 @@
-user  nginx;                     # Nginx가 실행되는 사용자
-worker_processes  1;            # 사용할 워커 프로세스의 수 (일반적으로 서버의 CPU 코어 수에 >맞추는 것이 좋습니다)
+user nobody;
+worker_processes auto;
+
+pid /var/run/nginx.pid;
 
 events {
-    worker_connections  1024;   # 각 워커 프로세스에서 동시에 처리할 수 있는 최대 연결 수
+    worker_connections 1024;
 }
 
 http {
-    include       /etc/nginx/mime.types;  # MIME 타입 설정 파일
+    # include /etc/nginx/mime.types;
+    include mime.types;
     default_type  application/octet-stream;
 
-    # 로그 설정
-    access_log  /var/log/nginx/access.log;
-    error_log   /var/log/nginx/error.log;
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                        '$status $body_bytes_sent "$http_referer" '
+                        '"$http_user_agent" "$http_x_forwarded_for"';
+
+    # 로그 파일 경로 설정
+    # access_log /usr/local/nginx/logs/access.log main;
+    # error_log /usr/local/nginx/logs/error.log;
 
     # Gzip 압축 설정
-    gzip  on;
-    gzip_disable "msie6";  # 특정 브라우저에서 Gzip 압축을 비활성화
+    sendfile  on;
+    keepalive_timeout 65;
+    gzip on;
 
-    include /etc/nginx/conf.d/*.conf;
+    # server {
+    #     listen 80;
+
+    #     server_name localhost;
+
+    #     modsecurity on;
+    #     modsecurity_rules_file /usr/local/nginx/conf/modsecurity.conf;
+
+    #     root /usr/share/nginx/html;
+    #     index index.html;
+
+    #     location / {
+    #         try_files $uri $uri/ /index.html;
+    #     }
+
+    #     location /api/ {
+    #         proxy_pass http://backend:8080;
+    #         proxy_set_header Host $host;
+    #         proxy_set_header X-Real-IP $remote_addr;
+    #         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    #         proxy_set_header X-Forwarded-Proto $scheme;
+    #     }
+    # }
+
+    include /usr/local/nginx/conf.d/*.conf;
 }
-~
