@@ -12,6 +12,7 @@ export default defineConfig({
       input: {
           denso: './public/company/denso.html',
           ikea: './public/company/ikea.html',
+          tk: './public/company/tk.html',
       },
     },
   },

@@ -23,6 +23,9 @@ export default {
         'ikea-yellow': '#FFD600',
         'ikea-blue': '#0057AE',
         'denso-gray': 'rgb(195, 194, 188)',
+        'tk-gray': 'rgb(237, 237, 237)',
+        'tk-comprehensive': 'rgb(11, 58, 90)',
+        'tk-individual': 'rgb(224, 240, 255)',
         'grandsun-navy': 'rgb(34, 53, 80)',
         'grandsun-red': 'rgb(157, 41, 44)',
         'grandsun-navy-hover': 'rgb(34, 53, 180)',
@@ -40,4 +43,3 @@ export default {
   },
   plugins: [],
 }
-

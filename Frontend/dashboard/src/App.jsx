@@ -3,16 +3,18 @@ import IkeaDashboard from './ikea/pages/IkeaDashboard'
 import IkeaDataFetcher from './ikea/components/SidebarDataFetcher'
 import DensoDashboard from './denso/pages/DensoDashboard'
 import DensoDataFetcher from './denso/components/SidebarDataFetcher'
+import TkDashboard from './tk/pages/TkDashboard'
+import TkDataFetcher from './tk/components/DataFetcher'
 
 // import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
-import { createBrowserRouter, RouterProvider} from "react-router-dom"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 import ErrorPage from './components/ErrorPage'
 
 const router = createBrowserRouter([
   {
     path: "/ikea",
-    element:(
+    element: (
       <>
         <IkeaDashboard />
         <div style={{ display: 'none' }}>
@@ -23,11 +25,22 @@ const router = createBrowserRouter([
   },
   {
     path: "/denso",
-    element:(
+    element: (
       <>
         <DensoDashboard />
         <div style={{ display: 'none' }}>
           <DensoDataFetcher />
+        </div>
+      </>
+    ),
+  },
+  {
+    path: "/tk",
+    element: (
+      <>
+        <TkDashboard />
+        <div style={{ display: 'none' }}>
+          <TkDataFetcher />
         </div>
       </>
     ),

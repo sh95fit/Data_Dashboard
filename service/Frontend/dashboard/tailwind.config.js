@@ -23,17 +23,18 @@ export default {
         'ikea-yellow': '#FFD600',
         'ikea-blue': '#0057AE',
         'denso-gray': 'rgb(195, 194, 188)',
+        'tk-gray': 'rgb(237, 237, 237)',
+        'tk-comprehensive': 'rgb(11, 58, 90)',
+        'tk-individual': 'rgb(224, 240, 255)',
         'grandsun-navy': 'rgb(34, 53, 80)',
         'grandsun-red': 'rgb(157, 41, 44)',
         'grandsun-navy-hover': 'rgb(34, 53, 180)',
       },
       fontSize: {
-        '21px': '21px', // 사용자 정의 크기 (30px)
+        '21px': '21px',
       },
       fontFamily: {
         sans: ["Poppins", "Arial", "sans-serif"],
-        // sans가 제일 기본 상속 폰트이므로 전체 폰트바꾸려면 sans재지정후 맨앞에 원하는 폰트 넣기
-
         hi: ["PretendardVariable", "sans-serif"],
       },
     },
