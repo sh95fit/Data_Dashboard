@@ -5,6 +5,8 @@ import DensoDashboard from './denso/pages/DensoDashboard'
 import DensoDataFetcher from './denso/components/SidebarDataFetcher'
 import TkDashboard from './tk/pages/TkDashboard'
 import TkDataFetcher from './tk/components/DataFetcher'
+import TkDashboard1 from './tk1/pages/TkDashboard'
+import TKDataFetcher1 from './tk1/components/DataFetcher'
 
 // import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
@@ -41,6 +43,17 @@ const router = createBrowserRouter([
         <TkDashboard />
         <div style={{ display: 'none' }}>
           <TkDataFetcher />
+        </div>
+      </>
+    ),
+  },
+  {
+    path: "/tk1",
+    element: (
+      <>
+        <TkDashboard1 />
+        <div style={{ display: 'none' }}>
+          <TKDataFetcher1 />
         </div>
       </>
     ),

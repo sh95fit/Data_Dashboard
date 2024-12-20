@@ -2,7 +2,7 @@ const Media = () => {
   return (
     <div className='w-full h-full'>
       <video
-        src={`/video/TK_OUT.mp4`}
+        src={`/video/TK_FULL_OUT.mp4`}
         autoPlay
         loop
         // muted

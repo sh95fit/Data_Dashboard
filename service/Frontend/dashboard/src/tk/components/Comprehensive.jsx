@@ -13,7 +13,7 @@ const Comprehensive = () => {
         <DataField title="CURRENT ENERGY" value={outp} unit="kW" />
         <DataField title="TODAY'S ENERGY" value={todaycpg} unit="kWh" />
         <DataField title="LIFETIME ENERGY" value={accmcpg} unit="MWh" />
-        <DataField title="CO₂ REDUCTION" value={totalco2} unit="tCO₂eq/ MWh" cssUnit='pt-1'/>
+        <DataField title="CO₂ REDUCTION" value={totalco2} unit="tCO₂eq/ MWh" cssUnit='pt-0'/>
       </div>
     </div>
   )

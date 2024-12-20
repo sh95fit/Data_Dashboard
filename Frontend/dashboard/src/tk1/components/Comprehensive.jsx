@@ -2,7 +2,7 @@ import { useSelector, shallowEqual } from 'react-redux';
 import DataField from './DataField';
 
 const Comprehensive = () => {
-  const { outp, todaycpg, accmcpg, totalco2 } = useSelector((state) => state.datafield_tk, shallowEqual);
+  const { outp, todaycpg, accmcpg, totalco2 } = useSelector((state) => state.datafield_tk1, shallowEqual);
 
   return (
     <div className='w-6/12 font-bold text-white bg-tk-comprehensive rounded-3xl px-7 py-14'>
