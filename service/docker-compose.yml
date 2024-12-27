@@ -1,5 +1,21 @@
 services :
 
+  logserver:
+    build:
+      context: ./Backend/logserver/.
+      dockerfile: Dockerfile
+    container_name: fastapi_backend
+    restart: always
+    tty: true
+    volumes:
+      - ./Backend/logserver/logs/react:/app/logs
+    environment:
+      - LOG_DIRECTORY=/app/logs
+    ports:
+      - 8888:8888
+    networks:
+      - dash_net
+
   backend:
     build:
       context: ./Backend/server/.
@@ -10,7 +26,7 @@ services :
     volumes:
       - ./Backend/server/:/app/
     ports:
-      - "8081:8080"
+      - "8080:8080"
     networks:
       - dash_net
 

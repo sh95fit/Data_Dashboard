@@ -23,6 +23,10 @@ export default defineConfig({
         target: 'http://localhost:8080', // 백엔드 서버의 URL
         changeOrigin: true,  // CORS 문제를 해결하려면 true로 설정
       },
+      '/log': {
+        target: 'http://localhost:8888',
+        changeOrigin: true,
+      }
     },
   }
 })

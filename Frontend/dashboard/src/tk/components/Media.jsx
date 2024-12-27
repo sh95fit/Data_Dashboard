@@ -41,9 +41,21 @@ const Media = () => {
 
 
   const checkPlay = () => {
-    const video = document.querySelector('video');
-    if (video.error === MediaError.MEDIA_ERR_ABORTED || video.error === MediaError.MEDIA_ERR_NETWORK) {
-      video.load();
+    const video = videoRef.current;
+
+    // if (video.error === MediaError.MEDIA_ERR_ABORTED || video.error === MediaError.MEDIA_ERR_NETWORK) {
+    if (video.error) {
+      const errorCode = video.error.code;
+      if (errorCode === 1 || errorCode === 2) {
+        video.load();
+        const logData = {
+          timestamp: new Date().toISOString(),
+          type: 'error',
+          message: `Video error occurred - Error Code: ${errorCode}`,
+          videoSrc: video.src,
+        };
+        dispatch(sendLogToServer(logData));
+      }
     }
 
     if (video.paused || video.ended) {
