@@ -9,6 +9,7 @@ import TkDayInfoSlice from "./tk/slice/dayInfoSlice";
 import TkDataFieldSlice from "./tk/slice/dataFieldSlice"
 import TkDayInfoSlice1 from "./tk1/slice/dayInfoSlice";
 import TkDataFieldSlice1 from "./tk1/slice/dataFieldSlice"
+import logReducer from "./logSlice"
 
 import { dataApi as ikeaApi } from './ikea/apis/fetchSidebarApi'
 import { dataApi as densoApi } from './denso/apis/fetchSidebarApi'
@@ -23,6 +24,8 @@ const logger = createLogger({
 
 const store = configureStore({
   reducer: {
+    logs: logReducer,
+
     dayinfo_ikea: ikeaDayInfoSlice.reducer,
     datafield_ikea: ikeaDataFieldSlice.reducer,
     [ikeaApi.reducerPath]: ikeaApi.reducer,

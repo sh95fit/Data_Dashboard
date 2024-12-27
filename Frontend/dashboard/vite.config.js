@@ -27,6 +27,10 @@ export default defineConfig({
         changeOrigin: true,  // CORS 문제를 해결하려면 true로 설정
         // rewrite: (path) => path.replace(/^\/api/, ''),  // API 경로 수정 (필요시)
       },
+      '/log': {
+        target: 'http://localhost:8888',
+        changeOrigin: true,
+      }
     },
   }
 })
