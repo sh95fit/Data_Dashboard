@@ -8,10 +8,32 @@ const Media = () => {
 
 
   const handleError = () => {
+    const error = videoRef.current?.error;
+
+    let errorMessage = 'Unknown error occurred';
+    if (error) {
+      switch (error.code) {
+        case MediaError.MEDIA_ERR_ABORTED:
+          errorMessage = 'The video playback was aborted.';
+          break;
+        case MediaError.MEDIA_ERR_NETWORK:
+          errorMessage = 'A network error caused the video download to fail.';
+          break;
+        case MediaError.MEDIA_ERR_DECODE:
+          errorMessage = 'The video playback was aborted due to a decoding error.';
+          break;
+        case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
+          errorMessage = 'The video format is not supported.';
+          break;
+        default:
+          errorMessage = `An unknown error occurred. Error code: ${error.code}`;
+      }
+    }
+
     const logData = {
       timestamp: new Date().toISOString(),
       type: 'error',
-      message: 'Video playback error',
+      message: `Video playback error : ${errorMessage}`,
       videoSrc: videoRef.current?.src,
     };
     dispatch(sendLogToServer(logData));
