@@ -18,9 +18,9 @@ const dayInfoSlice = createSlice({
 
   reducers: {
     setCurrentDateAndTime: (state, action) => {
-      state.currentDate = action.payload.currentDate;
-      state.currentDay = action.payload.currentDay;
-      state.currentTime = action.payload.currentTime;
+      state.currentDate = action.payload.currentDate || state.currentDate;
+      state.currentDay = action.payload.currentDay || state.currentDay;
+      state.currentTime = action.payload.currentTime || state.currentTime;
     },
   },
   extraReducers: (builder) => {
@@ -35,11 +35,12 @@ const dayInfoSlice = createSlice({
           }
           if (dataApi.endpoints.fetchSidebarData.matchFulfilled(action)) {
             state.loading = false;
-            state.tempval = action.payload.tempval;
-            state.tempmin = action.payload.tempmin;
-            state.sky = action.payload.sky;
-            state.facilityCapacity = action.payload.capacity;
-            state.loading = false;
+            if(action.payload){
+              state.tempval = action.payload.tempval !== null ? action.payload.tempval : state.tempval;
+              state.tempmin = action.payload.tempmin !== null ? action.payload.tempmin : state.tempmin;
+              state.sky = action.payload.sky !== null ? action.payload.sky : state.sky;
+              state.facilityCapacity = action.payload.capacity !== null ? action.payload.capacity : state.capacity;
+            }
           }
           if (dataApi.endpoints.fetchSidebarData.matchRejected(action)) {
             state.loading = false;

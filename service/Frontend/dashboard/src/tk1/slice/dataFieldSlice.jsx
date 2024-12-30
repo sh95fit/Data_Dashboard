@@ -27,11 +27,13 @@ const dataFieldSlice = createSlice({
           }
           if (dataApi.endpoints.fetchSidebarData.matchFulfilled(action)) {
             state.loading = false;
-            state.outp = action.payload.outp;
-            state.totalco2 = action.payload.totalco2;
-            state.todaycpg = action.payload.todaycpg;
-            state.accmcpg = action.payload.accmcpg;
-            state.pwrcpg = action.payload.pwrcpg;
+            if(action.payload){
+              state.outp = action.payload.outp !== null ? action.payload.outp : state.outp;
+              state.totalco2 = action.payload.totalco2 !== null ? action.payload.totalco2 : state.totalco2;
+              state.todaycpg = action.payload.todaycpg !== null ? action.payload.todaycpg : state.todaycpg;
+              state.accmcpg = action.payload.accmcpg !== null ? action.payload.accmcpg : state.accmcpg;
+              state.pwrcpg = action.payload.pwrcpg !== null ? action.payload.pwrcpg : state.pwrcpg;
+            }
           }
           if (dataApi.endpoints.fetchSidebarData.matchRejected(action)) {
             state.loading = false;
