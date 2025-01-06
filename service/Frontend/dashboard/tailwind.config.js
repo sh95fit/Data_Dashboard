@@ -32,6 +32,7 @@ export default {
       },
       fontSize: {
         '21px': '21px',
+        '3.5xl': ['2.2rem', '2.375rem'],
       },
       fontFamily: {
         sans: ["Poppins", "Arial", "sans-serif"],
