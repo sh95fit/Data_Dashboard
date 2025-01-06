@@ -5,8 +5,8 @@ const Capacity = () => {
 
     return (
         <div className='py-7'>
-            <div className='p-3 text-6xl font-bold text-center text-nowrap'>Solar power generation information</div>
-            <div className='p-3 text-5xl font-medium text-center text-nowrap'>
+            <div className='p-3 text-6xl font-bold text-nowrap text-center'>Solar power generation information</div>
+            <div className='p-3 text-5xl font-medium text-nowrap text-center'>
                 POWER PRODUCTION : {facilityCapacity.toLocaleString()}kW
             </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { sendLogToServer } from '../../logSlice';
 
@@ -80,10 +80,10 @@ const Media = () => {
       }
     }
 
-    if (video.paused || video.ended) {
-      video.play();
-      // video.play().catch(console.error);
-    }
+    // if (video.paused || video.ended) {
+    //   video.play();
+    //   // video.play().catch(console.error);
+    // }
   };
 
   useEffect(() => {

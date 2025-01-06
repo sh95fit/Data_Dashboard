@@ -5,7 +5,7 @@ const Comprehensive = () => {
   const { outp, todaycpg, accmcpg, totalco2 } = useSelector((state) => state.datafield_tk1, shallowEqual);
 
   return (
-    <div className='w-6/12 font-bold text-white bg-tk-comprehensive rounded-3xl px-7 py-14'>
+    <div className='w-6/12 font-bold text-white bg-tk-comprehensive rounded-3xl px-7 py-7'>
       <div className='p-5 text-5xl text-center'>
         Comprehensive information
       </div>

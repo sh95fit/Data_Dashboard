@@ -9,7 +9,7 @@ const DataDisplay = () => {
     // - 30초 주기일 경우 time 에서 초단위를 추출해서 30 으로 나눴을때 몫에 따른 페이지 전환
     // - 1분 단위일 경우 timd 에서 분단위를 추출해서 2로 나누었을때 나머지에 따른 페이지 전환
     return (
-        <div className='flex justify-center gap-4 p-5 pt-4'>
+        <div className='flex justify-center gap-4 p-5'>
             <Comprehensive />
             <Individual />
         </div>
