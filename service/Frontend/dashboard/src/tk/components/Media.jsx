@@ -37,6 +37,10 @@ const Media = () => {
       videoSrc: videoRef.current?.src,
     };
     dispatch(sendLogToServer(logData));
+
+    setTimeout(() => {
+      video.play();
+    }, 5000);
   };
 
 
