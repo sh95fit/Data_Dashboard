@@ -99,7 +99,7 @@ const Media = () => {
     <div className='w-full h-full'>
       <video
         ref={videoRef}
-        src={`/video/TK_OUT.mp4`}
+        // src={`/video/TK_OUT.mp4`}
         autoPlay
         loop
         preload="auto"
@@ -107,7 +107,9 @@ const Media = () => {
         onError={handleError}
         onPause={handlePause}
         onEnded={handleEnded}
-      />
+      >
+        <source src='/video/TK_OUT.mp4' type='video/mp4; codecs=av01.0.05M.10' />
+      </video>
     </div>
   )
 }
